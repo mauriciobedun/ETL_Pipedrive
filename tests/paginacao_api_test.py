@@ -2,6 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 import pyodbc
+from datetime import datetime
 
 #from tqdm import tqdm  # Importar a classe tqdm
 
@@ -49,29 +50,30 @@ while True:
             break
 
         for item in items:
-            # Preparar os valores para inserção
+
+# Extrair e formatar os valores
             values = [
                 item.get("id"),
                 item.get("creator_user_id", {}).get("id"),
                 item.get("user_id", {}).get("id"),
-                item.get("person_id", {}).get("value"),
-                item.get("org_id", {}).get("value"),
+                item.get("person_id", {}).get("value") if item.get("person_id") else None,
+                item.get("org_id", {}).get("value") if item.get("org_id") else None,
                 item.get("stage_id"),
                 item.get("title"),
                 item.get("value"),
                 item.get("currency"),
-                item.get("add_time"),
-                item.get("update_time"),
-                item.get("stage_change_time"),
+                datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None, # ok
+                datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None, # ok
+                datetime.strptime(item["stage_change_time"], "%Y-%m-%d %H:%M:%S") if item.get("stage_change_time") else None, # ok
                 item.get("active"),
                 item.get("deleted"),
                 item.get("status"),
                 item.get("probability"),
-                item.get("next_activity_date"),
+                datetime.strptime(item["next_activity_date"], "%Y-%m-%d") if item.get("next_activity_date") else None, # ok
                 item.get("next_activity_time"),
                 item.get("next_activity_id"),
                 item.get("last_activity_id"),
-                item.get("last_activity_date"),
+                datetime.strptime(item["last_activity_date"], "%Y-%m-%d") if item.get("last_activity_date") else None, # ok
                 item.get("lost_reason"),
                 item.get("visible_to"),
                 item.get("close_time"),
@@ -88,9 +90,10 @@ while True:
                 item.get("done_activities_count"),
                 item.get("undone_activities_count"),
                 item.get("participants_count"),
-                item.get("expected_close_date"),
-                item.get("last_incoming_mail_time"),
-                item.get("last_outgoing_mail_time"),
+                datetime.strptime(item["expected_close_date"], "%Y-%m-%d") if item.get("expected_close_date") else None, # ok
+                #item.get("expected_close_date"), # Falta esse 
+                datetime.strptime(item["last_incoming_mail_time"], "%Y-%m-%d %H:%M:%S") if item.get("last_incoming_mail_time") else None,
+                datetime.strptime(item["last_outgoing_mail_time"], "%Y-%m-%d %H:%M:%S") if item.get("last_outgoing_mail_time") else None,
                 item.get("label"),
                 item.get("stage_order_nr"),
                 item.get("person_name"),
@@ -103,7 +106,7 @@ while True:
                 item.get("weighted_value"),
                 item.get("formatted_weighted_value"),
                 item.get("weighted_value_currency"),
-                item.get("rotten_time"),
+                datetime.strptime(item["rotten_time"], "%Y-%m-%d %H:%M:%S") if item.get("rotten_time") else None, # Ok
                 item.get("owner_name"),
                 item.get("cc_email"),
                 item.get("0c8a1f5f74996e880ffac2e4224930a68151d7c1"),
@@ -116,6 +119,10 @@ while True:
                 item.get("org_hidden"),
                 item.get("person_hidden")
             ]
+
+            # Antes de inserir, imprima os valores para depuração
+            #print("Valores a serem inseridos:", values)
+
 
             # Preparar a consulta SQL
             insert_query = f"INSERT INTO Deals VALUES ({', '.join(['?' for _ in range(len(values))])})"
