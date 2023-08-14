@@ -51,3 +51,81 @@
 8. **Testes Automatizados:** Considere criar testes automatizados para verificar se o código funciona corretamente em diferentes cenários.
 
 Lembre-se de que a implementação das sugestões depende das necessidades específicas do seu projeto e da sua preferência de estilo de codificação.
+
+######################### resumo ##################
+
+O código que você forneceu é um script em Python que realiza a extração de dados de uma API (Pipedrive) e insere esses dados em um banco de dados SQL Server. Ele segue o fluxo básico de ETL (Extração, Transformação e Carga), onde extrai dados da API, realiza algumas transformações nos valores e, em seguida, carrega os dados transformados no banco de dados.
+
+Aqui está uma explicação passo a passo do código e um exemplo de um possível README explicativo:
+
+### Explicação do Código ###
+
+1. Importar Bibliotecas: O código começa importando as bibliotecas necessárias, como `requests` para fazer requisições HTTP, `os` para lidar com variáveis de ambiente, `dotenv` para carregar variáveis de um arquivo `.env`, `pyodbc` para conexão ao banco de dados e `datetime` para manipulação de datas.
+
+2. Carregar Variáveis de Ambiente: Ele carrega as variáveis de ambiente definidas no arquivo `.env`, que contém informações sensíveis, como URL da API, token de API, informações de conexão ao banco de dados etc.
+
+3. Conexão com o Banco de Dados: O código estabelece uma conexão com o banco de dados SQL Server usando as informações fornecidas nas variáveis de ambiente.
+
+4. Definir Endpoint e Parâmetros de Paginação: Define o endpoint da API que será acessado (no caso, "deals") e define parâmetros de paginação, como a página atual e o número de itens por página.
+
+5. Loop de Extração e Inserção: O código entra em um loop infinito onde faz uma solicitação GET à API Pipedrive para obter os dados dos deals. Ele percorre cada página de resultados, transforma os dados conforme necessário e tenta inserir os dados no banco de dados. Se não houver mais itens na página, o loop é interrompido.
+
+6. Preparar Valores para Inserção: Para cada item extraído da API, o código extrai os valores relevantes do JSON e os formata adequadamente. Ele lida com campos nulos e também faz a conversão dos valores de data/hora para objetos `datetime`.
+
+7. Executar Consulta SQL: O código prepara uma consulta SQL de inserção, usando o comando `INSERT INTO`. Ele usa um marcador de posição `?` para cada valor a ser inserido e, em seguida, executa a consulta usando o cursor do banco de dados.
+
+8. Lidar com Exceções: O código captura exceções que possam ocorrer durante o processo de inserção no banco de dados, como erros de conversão ou violação de restrições.
+
+9. Fechar a Conexão: Ao final, o código fecha a conexão com o banco de dados.
+
+### README Explicativo ###
+
+```
+# Pipedrive to SQL ETL Script
+
+Este script em Python realiza a extração de dados da API do Pipedrive e carrega esses dados em um banco de dados SQL Server.
+
+## Pré-requisitos
+
+- Python 3.x instalado
+- Bibliotecas: requests, pyodbc, dotenv
+
+## Configuração
+
+1. Clone este repositório para o seu ambiente de trabalho.
+2. Crie um arquivo `.env` na raiz do projeto e defina as seguintes variáveis:
+
+```
+base_url=<URL da API do Pipedrive>
+api_token=<Token de acesso à API do Pipedrive>
+Server=<Endereço do servidor SQL>
+database=<Nome do banco de dados SQL>
+UID=<Nome de usuário do banco de dados>
+PWD=<Senha do banco de dados>
+```
+
+## Uso
+
+1. Instale as bibliotecas necessárias usando o seguinte comando:
+
+```
+pip install requests pyodbc python-dotenv
+```
+
+2. Execute o script usando o seguinte comando:
+
+```
+python nome_do_script.py
+```
+
+O script irá extrair os dados da API do Pipedrive, formatar e inserir no banco de dados SQL Server.
+
+## Aviso
+
+Este script manipula informações sensíveis, como tokens de API e credenciais de banco de dados. Certifique-se de manter o arquivo `.env` em segurança e não compartilhá-lo publicamente.
+
+```
+
+Este README fornecerá instruções sobre como configurar e executar o script, quais são os pré-requisitos e quais informações sensíveis precisam ser protegidas. Certifique-se de personalizar o README com informações relevantes para o seu projeto.
+
+Lembre-se de que esse é um exemplo e você pode ajustá-lo de acordo com as necessidades específicas do seu projeto e do ambiente em que ele será executado.
