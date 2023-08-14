@@ -75,5 +75,3 @@ while True:
 
 # Fechar a conexão
 conn.close()
-
-
