@@ -34,11 +34,7 @@ Este repositório contém um script Python para extrair dados da API do Pipedriv
 
 5. **Utilização de Classes:** Considere usar classes para organizar o código de forma mais eficiente.
 
-6. **Gestão de Tokens:** Mantenha informações sensíveis fora do código fonte e use variáveis de ambiente.
-
-7. **Documentação e Comentários:** Adicione comentários explicativos ao código.
-
-8. **Testes Automatizados:** Crie testes automatizados para verificar a funcionalidade do código.
+6. **Testes Automatizados:** Crie testes automatizados para verificar a funcionalidade do código.
 
 ## Observações
 
