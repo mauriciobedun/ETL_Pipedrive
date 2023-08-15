@@ -51,7 +51,7 @@ while True:
 
         for item in items:
 
-# Extrair e formatar os valores
+            # Extrair e formatar os valores
             values = [
                 item.get("id"),
                 item.get("creator_user_id", {}).get("id"),
@@ -91,7 +91,6 @@ while True:
                 item.get("undone_activities_count"),
                 item.get("participants_count"),
                 datetime.strptime(item["expected_close_date"], "%Y-%m-%d") if item.get("expected_close_date") else None, # ok
-                #item.get("expected_close_date"), # Falta esse 
                 datetime.strptime(item["last_incoming_mail_time"], "%Y-%m-%d %H:%M:%S") if item.get("last_incoming_mail_time") else None,
                 datetime.strptime(item["last_outgoing_mail_time"], "%Y-%m-%d %H:%M:%S") if item.get("last_outgoing_mail_time") else None,
                 item.get("label"),
@@ -147,6 +146,24 @@ while True:
 conn.close()
 
 
+# columns = [
+#     "ID", "Título", "Proprietário", "Valor", "Moeda", "Organização", "Funil",
+#     "Pessoa de contato", "Etapa", "Status", "Negócio criado", "Horário da atualização",
+#     "Última alteração de etapa", "Data da próxima atividade", "Data da última atividade",
+#     "Data de ganho", "Data de perda", "Negócio fechado em", "Motivo da perda",
+#     "Visível para", "Total de atividades", "Atividades concluídas", "Atividades para fazer",
+#     "Número de mensagens de e-mail", "Data de fechamento esperada", "Criador",
+#     "Último e-mail recebido", "Último e-mail enviado", "Probabilidade", "Valor ponderado",
+#     "Moeda do valor ponderado", "Quantidade de produtos", "Valor de produtos",
+#     "Etiqueta", "Nome do produto", "Operadora Atual", "Aniversário do contrato",
+#     "Principais Dores atuais", "Tipo de Produto", "Reunião Agendada por:", "Origem da Oportunidade",
+#     "Data de Agendamento (Obrigatório SDR)"
+# ]
+
+# # Lista de endpoints a serem consultados
+# endpoints = [
+#     "deals", "persons", "organizations", "activities", "users", "files", "products", "notes", "stages", "pipelines", "webhooks"
+# ]
 
 ## teste com funções
 
