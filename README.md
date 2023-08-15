@@ -28,6 +28,7 @@
 - Certificar-se de que as instruções detalhadas para configurar e executar o projeto estão disponíveis na documentação.
 - Revisar o README para garantir que todas as etapas e informações importantes estejam claras e bem documentadas.
 - Fazer os ajustes finais no código com base nos resultados dos testes e na revisão da documentação.
+---
 
 ## Pipeline para Extrair e Inserir Dados do Pipedrive para SQL Server
 
