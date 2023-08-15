@@ -1,0 +1,26 @@
+**Projeto ETL Pipedrive to SQL Server - Detalhamento por Semana**
+
+**Semana 1: Planejamento e Configuração Inicial**
+- Definir os objetivos do projeto em termos de extração de dados da API do Pipedrive e carregamento no SQL Server.
+- Criar um repositório Git para versionamento do código.
+- Configurar um ambiente virtual Python para isolar as dependências do projeto.
+- Definir e criar um arquivo `.env` para armazenar variáveis sensíveis, como tokens de API e credenciais de banco de dados.
+- Iniciar um arquivo README para documentar o projeto, pré-requisitos e instruções de uso.
+
+**Semana 2: Estrutura de Extração e Inserção**
+- Pesquisar a API do Pipedrive para entender a estrutura dos endpoints e os dados disponíveis.
+- Escrever uma função de extração que realiza solicitações HTTP para a API Pipedrive e recebe os dados em formato JSON.
+- Escrever uma função de inserção que formata os dados extraídos e os insere no banco de dados SQL Server.
+
+**Semana 3: Implementação das Transformações**
+- Identificar campos com formato de data/hora e implementar a conversão correta para objetos `datetime`.
+- Identificar campos nulos e implementar a lógica para lidar com eles durante a inserção.
+- Implementar a formatação adequada de valores monetários e outros campos.
+
+**Semana 4: Testes, Validação e Conclusão**
+- Testar o script em diferentes cenários, incluindo casos de sucesso e erros.
+- Validar a inserção dos dados no banco de dados SQL Server e garantir que os tipos de dados estejam corretos.
+- Escrever documentação detalhada sobre o funcionamento do script, incluindo instruções para configurar e executar o projeto.
+- Revisar o README e garantir que todas as informações necessárias estejam incluídas.
+- Fazer os ajustes finais no código e no README, se necessário.
+- Finalizar o projeto e preparar-se para apresentar os resultados ao chefe.
