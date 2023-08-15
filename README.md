@@ -29,12 +29,6 @@
 - Revisar o README para garantir que todas as etapas e informações importantes estejam claras e bem documentadas.
 - Fazer os ajustes finais no código com base nos resultados dos testes e na revisão da documentação.
 
-**Observações:**
-- Caso ocorram imprevistos ou dificuldades técnicas durante o projeto, ajuste o cronograma conforme necessário.
-- Certifique-se de que todas as etapas estejam bem documentadas no README e no relatório final.
-- Ao longo das semanas, continue aprimorando e ajustando o script com base nos testes e na validação.
-- Lembre-se de manter o foco nos objetivos e de manter uma comunicação clara com o chefe para atualizá-lo sobre o progresso do projeto.
-
 ## Pipeline para Extrair e Inserir Dados do Pipedrive para SQL Server
 
 Este repositório contém um script Python para extrair dados da API do Pipedrive e inseri-los em uma tabela no SQL Server. O código foi desenvolvido para ser executado periodicamente para manter os dados sincronizados.
