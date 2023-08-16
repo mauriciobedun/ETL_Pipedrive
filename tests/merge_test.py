@@ -38,7 +38,7 @@ def extract_data(endpoint, params):
     else:
         print("Erro na solicitação:", response.status_code)
         return []
-
+    
 
 # Função para transformar os dados
 def transform_data(item):
@@ -204,6 +204,7 @@ def main():
         conn.commit()  # Certifique-se de fazer o commit após cada página de inserção/atualização
 
     conn.close()
+
 
 if __name__ == "__main__":
     main()
