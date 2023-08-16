@@ -1,4 +1,3 @@
-
 import requests
 import os
 from dotenv import load_dotenv
@@ -39,6 +38,7 @@ def extract_data(endpoint, params):
     else:
         print("Erro na solicitação:", response.status_code)
         return []
+    
 
 # Função para transformar os dados
 
