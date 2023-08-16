@@ -41,6 +41,8 @@ def extract_data(endpoint, params):
         return []
 
 # Função para transformar os dados
+
+
 def transform_data(item):
     # Transformações e formatações aqui
     values = [
