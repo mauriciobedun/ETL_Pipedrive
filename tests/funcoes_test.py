@@ -126,7 +126,7 @@ def transform_data(item):
 
 
 def load_data(cursor, values):
-    insert_query = f"INSERT INTO Deals VALUES ({', '.join(['?' for _ in range(len(values))])})"
+    insert_query = f"INSERT INTO Deals_raw VALUES ({', '.join(['?' for _ in range(len(values))])})"
     try:
         cursor.execute(insert_query, values)
         cursor.commit()
