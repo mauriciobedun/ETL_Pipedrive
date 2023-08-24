@@ -33,65 +33,6 @@ def extract_data(endpoint, params):
         print("Erro na solicitação:", response.status_code)
         return []
 
-# def main():
-#     conn = connect_to_database()
-#     cursor = conn.cursor()
-#     endpoint = "deals"
-#     page = 1
-#     per_page = 500
-
-#     while True:
-#         params = {
-#             "api_token": api_token,
-#             "start": (page - 1) * per_page,
-#             "limit": per_page
-#         }
-
-#         items = extract_data(endpoint, params)
-
-#         if not items:
-#             break
-
-#         for item in items:
-#             deal_id = item.get("id")
-#             products_endpoint = f"deals/{deal_id}/products"
-#             products = extract_data(products_endpoint, {"api_token": api_token})
-
-#             if products:
-#                 for product in products:
-#                     product_id = product.get("id")
-#                     product_values = [
-#                         deal_id,
-#                         #product.get("product_id"),
-#                         product_id,
-#                         #product.get("ProductCode"),
-#                         product.get("name"),
-#                         product.get("item_price"),
-#                         product.get("TotalPrice"),
-#                         product.get("quantity"),
-#                         product.get("discount_percentage")
-#                     ]
-
-#                     # Imprimir os valores que serão inseridos
-#                     print("Valores a serem inseridos:", product_values)
-
-#                     insert_query = "INSERT INTO Products_Deals_raw (DealID, ProductID, ProductName, ItemPrice, TotalPrice, Quantity, DiscountPercentage) VALUES (?, ?, ?, ?, ?, ?, ?)"
-#                     try:
-#                         cursor.execute(insert_query, product_values)
-#                         cursor.commit()
-#                         print(f"Produto inserido: ID = {deal_id}, Nome = {product.get('name')}")
-#                     except Exception as e:
-#                         print(f"Erro ao inserir o produto {product_id} (DealID = {deal_id}): {str(e)}")
-
-#         page += 1
-
-#     conn.close()
-
-# if __name__ == "__main__":
-#     main()
-
-# ... (código anterior)
-
 def main():
     conn = connect_to_database()
     cursor = conn.cursor()
@@ -121,15 +62,15 @@ def main():
                     product_id = product.get("id")
                     product_values = [
                         deal_id,
-                        product_id,
+                        product.get("id"),
+                        product.get("product_id"),
                         product.get("name"),
                         product.get("item_price"),
-                        #product.get("TotalPrice"),
                         product.get("sum_formatted"),
                         product.get("quantity"),
                         product.get("discount_percentage")
                     ]
-                    insert_query = "INSERT INTO Products_Deals_raw (DealID, ProductID, ProductName, ItemPrice, sum_formatted, Quantity, DiscountPercentage) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                    insert_query = "INSERT INTO Products_Deals_raw (DealID, id, ProductID, ProductName, ItemPrice, sum_formatted, Quantity, DiscountPercentage) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
                     try:
                         cursor.execute(insert_query, product_values)
                         cursor.commit()
