@@ -30,4 +30,4 @@ jobs:
         database: ${{ secrets.DATABASE }}
         UID: ${{ secrets.UID }}
         PWD: ${{ secrets.PWD }}
-      run: python extract_deals_insert.py
+      run: .venv\extract_deals_insert.py
