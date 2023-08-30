@@ -2,7 +2,7 @@ name: Extract and Load Data
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # Rodar todos os dias às 12:00 (UTC)
+    - cron: '15 16 * * *'  # Rodar todos os dias às 12:00 (UTC)
 
 jobs:
   extract_load_data:
