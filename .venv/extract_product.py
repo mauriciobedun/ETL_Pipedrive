@@ -61,16 +61,17 @@ def main():
                 for product in products:
                     product_id = product.get("id")
                     product_values = [
-                        deal_id,
                         product.get("id"),
+                        deal_id,
                         product.get("product_id"),
                         product.get("name"),
                         product.get("item_price"),
-                        product.get("sum_formatted"),
                         product.get("quantity"),
-                        product.get("discount_percentage")
+                        product.get("discount_percentage"),
+                        product.get("sum_formatted"),
+                        product.get("sum"),
                     ]
-                    insert_query = "INSERT INTO Products_Deals_raw (DealID, id, ProductID, ProductName, ItemPrice, sum_formatted, Quantity, DiscountPercentage) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+                    insert_query = "INSERT INTO Products_Deals_raw (id, deal_id, product_id, product_name, item_price, quantity, discount_percentage, sum_formatted, sum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
                     try:
                         cursor.execute(insert_query, product_values)
                         cursor.commit()
