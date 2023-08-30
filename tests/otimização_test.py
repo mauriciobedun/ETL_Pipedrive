@@ -190,6 +190,100 @@
 
 
 
+# import os
+# import requests
+# from dotenv import load_dotenv
+# import pyodbc
+
+# load_dotenv()
+
+# base_url = os.environ.get("base_url")
+# api_token = os.environ.get("api_token")
+# Server = os.environ.get("Server")
+# database = os.environ.get("database")
+# UID = os.environ.get('UID')
+# PWD = os.environ.get('PWD')
+
+# def connect_to_database():
+#     return pyodbc.connect(
+#         Driver='{SQL Server Native Client 11.0}',
+#         Server=Server,
+#         database=database,
+#         UID=UID,
+#         PWD=PWD
+#     )
+
+# def extract_data(endpoint, params):
+#     response = requests.get(f"{base_url}{endpoint}", params=params)
+#     if response.status_code == 200:
+#         return response.json()["data"]
+#     else:
+#         print("Erro na solicitação:", response.status_code)
+#         return []
+
+# def main():
+#     conn = connect_to_database()
+#     cursor = conn.cursor()
+#     endpoint = "deals"
+#     page = 1
+#     per_page = 500
+
+#     while True:
+#         params = {
+#             "api_token": api_token,
+#             "start": (page - 1) * per_page,
+#             "limit": per_page
+#         }
+
+#         items = extract_data(endpoint, params)
+
+#         if not items:
+#             break
+
+#         for item in items:
+#             deal_id = item.get("id")
+#             products_endpoint = f"deals/{deal_id}/products"
+#             products = extract_data(products_endpoint, {"api_token": api_token})
+
+#             if products:
+#                 for product in products:
+#                     product_id = product.get("id")
+#                     product_values = [
+#                         deal_id,
+#                         product_id,
+#                         product.get("product_id"),
+#                         product.get("name"),
+#                         product.get("item_price"),
+#                         product.get("sum_formatted"),
+#                         product.get("quantity"),
+#                         product.get("discount_percentage")
+#                     ]
+#                     merge_query = '''
+#                         MERGE INTO Products_Deals_raw AS target
+#                         USING (VALUES (?, ?, ?, ?, ?, ?, ?, ?)) AS source (DealID, id, ProductID, ProductName, ItemPrice, sum_formatted, Quantity, DiscountPercentage)
+#                         ON target.DealID = source.DealID AND target.id = source.id
+#                         WHEN MATCHED THEN
+#                             UPDATE SET
+#                                 ItemPrice = source.ItemPrice,
+#                                 sum_formatted = source.sum_formatted,
+#                                 Quantity = source.Quantity,
+#                                 DiscountPercentage = source.DiscountPercentage
+#                         WHEN NOT MATCHED THEN
+#                             INSERT (DealID, id, ProductID, ProductName, ItemPrice, sum_formatted, Quantity, DiscountPercentage)
+#                             VALUES (source.DealID, source.id, source.ProductID, source.ProductName, source.ItemPrice, source.sum_formatted, source.Quantity, source.DiscountPercentage);
+#                     '''
+#                     cursor.execute(merge_query, product_values)
+#                     conn.commit()
+#                     print(f"Produto inserido/atualizado: DealID = {deal_id}, ProductID = {product_id}")
+
+#         page += 1
+
+#     conn.close()
+
+# if __name__ == "__main__":
+#     main()
+
+
 import os
 import requests
 from dotenv import load_dotenv
@@ -274,7 +368,10 @@ def main():
                     '''
                     cursor.execute(merge_query, product_values)
                     conn.commit()
-                    print(f"Produto inserido/atualizado: DealID = {deal_id}, ProductID = {product_id}")
+                    if cursor.rowcount > 0:
+                        print(f"Produto inserido/atualizado: DealID = {deal_id}, ProductID = {product_id}")
+                    else:
+                        print(f"Produto não foi inserido/atualizado: DealID = {deal_id}, ProductID = {product_id}")
 
         page += 1
 
