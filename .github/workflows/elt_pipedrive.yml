@@ -2,7 +2,7 @@ name: Extract and Load Data
 
 on:
   schedule:
-    - cron: '21 16 * * *'  # Rodar todos os dias às 12:00 (UTC)
+    - cron: '23 16 * * *'  # Rodar todos os dias às 12:00 (UTC)
 
 jobs:
   extract_load_data:
@@ -15,7 +15,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.11
+        python-version: "3.11"
 
     - name: Install dependencies
       run: |
