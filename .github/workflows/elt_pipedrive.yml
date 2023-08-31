@@ -1,33 +1,29 @@
-name: Extract and Load Data
-
+---
+name: Extract_and_Load_Data
 on:
   schedule:
-    - cron: '25 16 * * *'  # Rodar todos os dias às 12:00 (UTC)
-
+    - cron: 30 12 * * *
 jobs:
   extract_load_data:
-    runs-on: ubuntu-latest
-
+    runs-on: windows-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pyodbc python-dotenv
+      - name: Run Extract_and_Load_Data
+        env:
+          base_url: ${{ secrets.BASE_URL }}
+          api_token: ${{ secrets.API_TOKEN }}
+          Server: ${{ secrets.SERVER }}
+          database: ${{ secrets.DATABASE }}
+          UID: ${{ secrets.UID }}
+          PWD: ${{ secrets.PWD }}
+        run: .venv\extract_deals_insert.py
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.11'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests pyodbc python-dotenv
-
-    - name: Run Extract and Load Data
-      env:
-        base_url: ${{ secrets.BASE_URL }}
-        api_token: ${{ secrets.API_TOKEN }}
-        Server: ${{ secrets.SERVER }}
-        database: ${{ secrets.DATABASE }}
-        UID: ${{ secrets.UID }}
-        PWD: ${{ secrets.PWD }}
-      run: .venv\extract_deals_insert.py
