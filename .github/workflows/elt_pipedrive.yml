@@ -17,10 +17,10 @@ jobs:
         with:
           python-version: "3.11"
        - name: Activate virtual environment
-        run: |
-          .venv\Scripts\activate
-          python -m pip install --upgrade pip
-          pip install requests pyodbc python-dotenv
+          run: |
+            .venv\Scripts\activate
+            python -m pip install --upgrade pip
+            pip install requests pyodbc python-dotenv
       - name: Run Extract_and_Load_Data
         env:
           base_url: ${{ secrets.BASE_URL }}
