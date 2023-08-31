@@ -2,7 +2,10 @@
 name: Extract_and_Load_Data
 on:
   schedule:
-    - cron: 30 12 * * *
+    - cron: 35 14 * * *
+  push:
+    branches:
+      - main 
 jobs:
   extract_load_data:
     runs-on: windows-latest
