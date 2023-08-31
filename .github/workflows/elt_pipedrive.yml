@@ -1,26 +1,42 @@
----
 name: Extract_and_Load_Data
+
 on:
   schedule:
-    - cron: '10 15 * * *'
-  push:
-    branches:
-      - main 
+    - cron: '20 15 * * *'  # Rodar todos os dias às 12:00 (UTC)
+
 jobs:
   extract_load_data:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.11"
+          python-version: 3.11
+
+      - name: Install FreeTDS driver
+        run: |
+          sudo apt-get update
+          sudo apt-get install freetds-dev
+          
+      - name: Install ODBC Driver 17 for SQL Server
+        run: |
+          sudo su
+          curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+          curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+          exit
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y msodbcsql17
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests pyodbc python-dotenv
-      - name: Run Extract_and_Load_Data
+
+      - name: Run Extract and Load Data
         env:
           base_url: ${{ secrets.BASE_URL }}
           api_token: ${{ secrets.API_TOKEN }}
@@ -28,6 +44,7 @@ jobs:
           database: ${{ secrets.DATABASE }}
           UID: ${{ secrets.UID }}
           PWD: ${{ secrets.PWD }}
-        run: python .venv/extract_deals_insert.py
+        run: python extract_deals_insert.py
+
 
 
