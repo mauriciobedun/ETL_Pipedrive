@@ -2,7 +2,7 @@
 name: Extract_and_Load_Data
 on:
   schedule:
-    - cron: '59 14 * * *'
+    - cron: '05 15 * * *'
   push:
     branches:
       - main 
@@ -28,6 +28,6 @@ jobs:
           database: ${{ secrets.DATABASE }}
           UID: ${{ secrets.UID }}
           PWD: ${{ secrets.PWD }}
-        run: python extract_deals_insert.py 
+        run: python .venv\extract_deals_insert.py
 
 
