@@ -2,7 +2,7 @@ name: Extract_and_Load_Data
 
 on:
   schedule:
-    - cron: '20 15 * * *'  # Rodar todos os dias às 12:00 (UTC)
+    - cron: '00 16 * * *'  # Rodar todos os dias às 12:00 (UTC)
 
 jobs:
   extract_load_data:
@@ -20,16 +20,16 @@ jobs:
       - name: Install FreeTDS driver
         run: |
           sudo apt-get update
-          sudo apt-get install freetds-dev
-          
+          sudo apt-get install -y freetds-dev
+
       - name: Install ODBC Driver 17 for SQL Server
         run: |
-          sudo su
-          curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-          curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-          exit
-          sudo apt-get update
-          sudo ACCEPT_EULA=Y apt-get install -y msodbcsql17
+          sudo su \
+          && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+          && curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+          && exit \
+          && sudo apt-get update \
+          && sudo ACCEPT_EULA=Y apt-get install -y msodbcsql17
 
       - name: Install dependencies
         run: |
