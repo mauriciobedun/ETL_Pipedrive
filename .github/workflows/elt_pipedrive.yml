@@ -16,8 +16,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: "3.11"
-      - name: Install dependencies
+       - name: Activate virtual environment
         run: |
+          .venv\Scripts\activate
           python -m pip install --upgrade pip
           pip install requests pyodbc python-dotenv
       - name: Run Extract_and_Load_Data
