@@ -20,7 +20,7 @@ PWD = os.environ.get('PWD')
 
 def connect_to_database():
     return pyodbc.connect(
-        Driver='{FreeTDS}',
+        Driver='{SQL Server Native Client 11.0}',
         Server=Server,
         database=database,
         UID=UID,
