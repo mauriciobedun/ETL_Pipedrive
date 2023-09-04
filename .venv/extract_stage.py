@@ -41,18 +41,18 @@ def extract_data(endpoint, params):
 def transform_data(item):
     # Transformações e formatações aqui
     values = [
-        item.get("id"),
-        item.get("order_nr"),
-        item.get("name"),
-        item.get("active_flag"),
-        item.get("deal_probability"),
-        item.get("pipeline_id"),
-        item.get("rotten_flag"),
-        item.get("rotten_days"),
-        datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None,
-        datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None,
-        item.get("pipeline_name"),
-        item.get("pipeline_deal_probability"),
+        item.get("id"),                                                                                         # ID
+        item.get("order_nr"),                                                                                   # Número_de_Pedido
+        item.get("name"),                                                                                       # Nome
+        item.get("active_flag"),                                                                                # Flag_Ativo
+        item.get("deal_probability"),                                                                           # Probabilidade_do_Negócio
+        item.get("pipeline_id"),                                                                                # ID_do_Pipeline
+        item.get("rotten_flag"),                                                                                # Flag_Rotten
+        item.get("rotten_days"),                                                                                # Dias_Rotten
+        datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None,             # Data_de_Adição
+        datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None,       # Data_de_Atualização
+        item.get("pipeline_name"),                                                                              # Nome_do_Pipeline
+        item.get("pipeline_deal_probability"),                                                                  # Probabilidade_do_Negócio_do_Pipeline
     ]
     return values
 

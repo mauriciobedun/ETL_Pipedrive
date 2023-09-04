@@ -60,7 +60,7 @@ def transform_data(item):
         datetime.strptime(item["stage_change_time"], "%Y-%m-%d %H:%M:%S") if item.get("stage_change_time") else None,                       # data_da_mudança_de_etapa
         datetime.strptime(item["next_activity_date"],"%Y-%m-%d") if item.get("next_activity_date") else None,                               # próxima_data_de_atividade
         datetime.strptime(item["last_activity_date"],"%Y-%m-%d") if item.get("last_activity_date") else None,                               # última_data_de_atividade
-        item.get("won_time"),                                                                                                               # data_de_vitória
+        item.get("won_time"),                                                                                                               # data_de_ganho
         item.get("lost_time"),                                                                                                              # data_de_perda
         item.get("close_time"),                                                                                                             # data_de_fechamento
         item.get("lost_reason"),                                                                                                            # motivo_da_perda

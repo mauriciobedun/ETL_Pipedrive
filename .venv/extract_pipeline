@@ -43,12 +43,12 @@ def transform_data(item):
     values = [
         item.get("id"),                                                                                         # ID 
         item.get("name"),                                                                                       # Nome 
-        item.get("url_title"),                                                                                  # Título da URL 
-        item.get("order_nr"),                                                                                   # Número de Ordem 
+        item.get("url_title"),                                                                                  # Título_da_URL 
+        item.get("order_nr"),                                                                                   # Número_de_Ordem 
         item.get("active"),                                                                                     # Ativo 
-        item.get("deal_probability"),                                                                           # Probabilidade do Negócio 
-        datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None,             # Data de Adição 
-        datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None,       # Data de Atualização 
+        item.get("deal_probability"),                                                                           # Probabilidade_do_Negócio 
+        datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None,             # Data_de_Adição_Pipeline
+        datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None,       # Data_de_Atualização_Pipeline
         item.get("selected"),                                                                                   # Selecionado 
     ]
     return values
