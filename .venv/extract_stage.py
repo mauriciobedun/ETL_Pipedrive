@@ -43,14 +43,14 @@ def transform_data(item):
     values = [
         item.get("id"),                                                                                         # ID
         item.get("order_nr"),                                                                                   # Número_de_Pedido
-        item.get("name"),                                                                                       # Nome
+        item.get("name"),                                                                                       # Nome_Etapa
         item.get("active_flag"),                                                                                # Flag_Ativo
-        item.get("deal_probability"),                                                                           # Probabilidade_do_Negócio
-        item.get("pipeline_id"),                                                                                # ID_do_Pipeline
+        item.get("deal_probability"),                                                                           # Probabilidade_Negócio
+        item.get("pipeline_id"),                                                                                # ID_Pipeline
         item.get("rotten_flag"),                                                                                # Flag_Rotten
         item.get("rotten_days"),                                                                                # Dias_Rotten
-        datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None,             # Data_de_Adição
-        datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None,       # Data_de_Atualização
+        datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None,             # Data_de_Adição_Etapa
+        datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None,       # Data_de_Atualização_Etapa
         item.get("pipeline_name"),                                                                              # Nome_do_Pipeline
         item.get("pipeline_deal_probability"),                                                                  # Probabilidade_do_Negócio_do_Pipeline
     ]

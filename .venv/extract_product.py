@@ -63,13 +63,13 @@ def main():
                     product_values = [
                         product.get("id"),                         # ID 
                         deal_id,                                   # ID do Negócio 
-                        product.get("product_id"),                 # ID do Produto 
-                        product.get("name"),                       # Nome do Produto 
-                        product.get("item_price"),                 # Preço do Item 
-                        product.get("quantity"),                   # Quantidade 
-                        product.get("discount_percentage"),        # Percentagem de Desconto 
-                        product.get("sum_formatted"),              # Valor Total Formatado 
-                        product.get("sum"),                        # Valor Total 
+                        product.get("product_id"),                 # ID_do_produto 
+                        product.get("name"),                       # nome_do_produto 
+                        product.get("item_price"),                 # preço_do_item 
+                        product.get("quantity"),                   # quantidade 
+                        product.get("discount_percentage"),        # percentagem_de_desconto 
+                        product.get("sum_formatted"),              # valor_total_formatado 
+                        product.get("sum"),                        # valor_total 
                     ]
                     insert_query = "INSERT INTO Products_Deals_raw (id, deal_id, product_id, product_name, item_price, quantity, discount_percentage, sum_formatted, sum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
                     try:
