@@ -41,15 +41,15 @@ def extract_data(endpoint, params):
 def transform_data(item):
     # Transformações e formatações aqui
     values = [
-        item.get("id"),
-        item.get("name"),
-        item.get("url_title"),
-        item.get("order_nr"),
-        item.get("active"),
-        item.get("deal_probability"),
-        datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None,
-        datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None,
-        item.get("selected"),
+        item.get("id"),                                                                                         # ID 
+        item.get("name"),                                                                                       # Nome 
+        item.get("url_title"),                                                                                  # Título da URL 
+        item.get("order_nr"),                                                                                   # Número de Ordem 
+        item.get("active"),                                                                                     # Ativo 
+        item.get("deal_probability"),                                                                           # Probabilidade do Negócio 
+        datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None,             # Data de Adição 
+        datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None,       # Data de Atualização 
+        item.get("selected"),                                                                                   # Selecionado 
     ]
     return values
 

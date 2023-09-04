@@ -61,15 +61,15 @@ def main():
                 for product in products:
                     product_id = product.get("id")
                     product_values = [
-                        product.get("id"),
-                        deal_id,
-                        product.get("product_id"),
-                        product.get("name"),
-                        product.get("item_price"),
-                        product.get("quantity"),
-                        product.get("discount_percentage"),
-                        product.get("sum_formatted"),
-                        product.get("sum"),
+                        product.get("id"),                         # ID 
+                        deal_id,                                   # ID do Negócio 
+                        product.get("product_id"),                 # ID do Produto 
+                        product.get("name"),                       # Nome do Produto 
+                        product.get("item_price"),                 # Preço do Item 
+                        product.get("quantity"),                   # Quantidade 
+                        product.get("discount_percentage"),        # Percentagem de Desconto 
+                        product.get("sum_formatted"),              # Valor Total Formatado 
+                        product.get("sum"),                        # Valor Total 
                     ]
                     insert_query = "INSERT INTO Products_Deals_raw (id, deal_id, product_id, product_name, item_price, quantity, discount_percentage, sum_formatted, sum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
                     try:

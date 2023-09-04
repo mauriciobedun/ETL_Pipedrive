@@ -44,39 +44,39 @@ def extract_data(endpoint, params):
 def transform_data(item):
     # Transformações e formatações aqui
     values = [
-        item.get("id"),
-        item.get("title"),
-        item.get("owner_name"),
-        item.get("value"),
-        item.get("formatted_value"),
-        item.get("currency"),
-        item.get("org_name"),
-        item.get("pipeline_id"),
-        item.get("person_name"),
-        item.get("stage_id"),
-        item.get("status"),
-        datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None,
-        datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None,
-        datetime.strptime(item["stage_change_time"], "%Y-%m-%d %H:%M:%S") if item.get("stage_change_time") else None,
-        datetime.strptime(item["next_activity_date"],"%Y-%m-%d") if item.get("next_activity_date") else None,
-        datetime.strptime(item["last_activity_date"],"%Y-%m-%d") if item.get("last_activity_date") else None,
-        item.get("won_time"),
-        item.get("lost_time"),
-        item.get("close_time"),
-        item.get("lost_reason"),
-        item.get("visible_to"),
-        item.get("activities_count"),
-        item.get("done_activities_count"),
-        item.get("undone_activities_count"),
-        item.get("email_messages_count"),
-        datetime.strptime(item["expected_close_date"],"%Y-%m-%d") if item.get("expected_close_date") else None,
-        item.get("creator_user_id", {}).get("name"),
-        datetime.strptime(item["last_incoming_mail_time"],"%Y-%m-%d %H:%M:%S") if item.get("last_incoming_mail_time") else None,
-        datetime.strptime(item["last_outgoing_mail_time"],"%Y-%m-%d %H:%M:%S") if item.get("last_outgoing_mail_time") else None,
-        item.get("probability"),
-        item.get("formatted_weighted_value"),
-        item.get("weighted_value_currency"),
-        item.get("products_count")
+        item.get("id"),                                                                                                                     # id
+        item.get("title"),                                                                                                                  # título
+        item.get("owner_name"),                                                                                                             # nome_do_proprietário
+        item.get("value"),                                                                                                                  # valor
+        item.get("formatted_value"),                                                                                                        # valor_formatado
+        item.get("currency"),                                                                                                               # moeda
+        item.get("org_name"),                                                                                                               # nome_da_organização
+        item.get("pipeline_id"),                                                                                                            # ID_do_pipeline
+        item.get("person_name"),                                                                                                            # nome_da_pessoa
+        item.get("stage_id"),                                                                                                               # ID_da_etapa
+        item.get("status"),                                                                                                                 # status
+        datetime.strptime(item["add_time"], "%Y-%m-%d %H:%M:%S") if item.get("add_time") else None,                                         # data_de_inserção
+        datetime.strptime(item["update_time"], "%Y-%m-%d %H:%M:%S") if item.get("update_time") else None,                                   # data_de_atualização
+        datetime.strptime(item["stage_change_time"], "%Y-%m-%d %H:%M:%S") if item.get("stage_change_time") else None,                       # data_da_mudança_de_etapa
+        datetime.strptime(item["next_activity_date"],"%Y-%m-%d") if item.get("next_activity_date") else None,                               # próxima_data_de_atividade
+        datetime.strptime(item["last_activity_date"],"%Y-%m-%d") if item.get("last_activity_date") else None,                               # última_data_de_atividade
+        item.get("won_time"),                                                                                                               # data_de_vitória
+        item.get("lost_time"),                                                                                                              # data_de_perda
+        item.get("close_time"),                                                                                                             # data_de_fechamento
+        item.get("lost_reason"),                                                                                                            # motivo_da_perda
+        item.get("visible_to"),                                                                                                             # visível_para
+        item.get("activities_count"),                                                                                                       # contagem_de_atividades
+        item.get("done_activities_count"),                                                                                                  # contagem_de_atividades_concluídas
+        item.get("undone_activities_count"),                                                                                                # contagem_de_atividades_não_concluídas
+        item.get("email_messages_count"),                                                                                                   # contagem_de_mensagens_de_e-mail
+        datetime.strptime(item["expected_close_date"],"%Y-%m-%d") if item.get("expected_close_date") else None,                             # data_de_fechamento_esperada
+        item.get("creator_user_id", {}).get("name"),                                                                                        # ID_do_usuário_criador
+        datetime.strptime(item["last_incoming_mail_time"],"%Y-%m-%d %H:%M:%S") if item.get("last_incoming_mail_time") else None,            # última_hora_de_e-mail_recebido
+        datetime.strptime(item["last_outgoing_mail_time"],"%Y-%m-%d %H:%M:%S") if item.get("last_outgoing_mail_time") else None,            # última_hora_de_e-mail_enviado
+        item.get("probability"),                                                                                                            # probabilidade
+        item.get("formatted_weighted_value"),                                                                                               # valor_ponderado_formatado
+        item.get("weighted_value_currency"),                                                                                                # moeda_do_valor_ponderado
+        item.get("products_count")                                                                                                          # contagem_de_produtos
     ]
     return values
 
