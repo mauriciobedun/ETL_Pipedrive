@@ -1,9 +1,10 @@
 ---
+# https://crontab.guru/#59_23_31_12_*
 name: Extract_and_Load_Data
 
 on:
   schedule:
-    - cron: '00 16 * * *'  # Rodar todos os dias às 12:00 (UTC)
+    - cron: '59 23 31 12 *'  # Rodar no último minuto do ano 
 
 jobs:
   extract_load_data:
